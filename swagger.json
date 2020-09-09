@@ -1535,8 +1535,7 @@
           "format": "int64"
         },
         "device_token": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "description": {
           "type": "string"
