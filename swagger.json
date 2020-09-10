@@ -1003,43 +1003,6 @@
         ]
       }
     },
-    "/insights/": {
-      "post": {
-        "tags": [
-          "insights"
-        ],
-        "summary": "Generate insights to the user",
-        "description": "",
-        "operationId": "generateInsights",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "user_id",
-            "description": "User object that needs to be added to the project",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/GenerateInsights"
-            }
-          }
-        ],
-        "responses": {
-          "405": {
-            "description": "Invalid input"
-          }
-        },
-        "security": [
-          {
-            "api_key": []
-          }
-        ]
-      }
-    },
     "/insights/work/": {
       "get": {
         "tags": [
@@ -1700,17 +1663,6 @@
       },
       "xml": {
         "name": "createTrip"
-      }
-    },
-    "GenerateInsights": {
-      "type": "object",
-      "properties": {
-        "user_id": {
-          "type": "string"
-        }
-      },
-      "xml": {
-        "name": "generateInsights"
       }
     },
     "CreateMovingGeofence": {
