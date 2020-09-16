@@ -519,7 +519,7 @@
             "in": "body",
             "name": "body",
             "description": "Location object that needs to be deleted",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/DeleteLocation"
             }
@@ -559,7 +559,7 @@
             "in": "body",
             "name": "body",
             "description": "Trip object that needs to be added to the project",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/CreateTrip"
             }
@@ -594,7 +594,7 @@
             "in": "body",
             "name": "body",
             "description": "Trip object that needs to be added to the project",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/UpdateTrip"
             }
@@ -909,21 +909,21 @@
             "name": "user_id",
             "in": "query",
             "description": "user_id",
-            "required": true,
+            "required": false,
             "type": "string"
           },
           {
             "name": "radius",
             "in": "query",
             "description": "radius",
-            "required": true,
+            "required": false,
             "type": "string"
           },
           {
             "name": "location",
             "in": "query",
             "description": "long,lat",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
@@ -964,21 +964,18 @@
             "name": "user_id",
             "in": "query",
             "description": "user_id",
-            "required": true,
             "type": "string"
           },
           {
             "name": "radius",
             "in": "query",
             "description": "radius",
-            "required": true,
             "type": "string"
           },
           {
             "name": "location",
             "in": "query",
             "description": "long,lat",
-            "required": true,
             "type": "string"
           }
         ],
@@ -1193,7 +1190,7 @@
             "in": "body",
             "name": "Body",
             "description": "Geofence object that needs to be added to the project",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/CreateMovingGeofence"
             }
@@ -1228,7 +1225,7 @@
             "in": "body",
             "name": "body",
             "description": "Geofence object that needs to be updated",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/UpdateMovingGeofence"
             }
@@ -1323,7 +1320,7 @@
             "in": "body",
             "name": "body",
             "description": "Geofence object that needs to be deleted",
-            "required": true,
+            "required": false,
             "schema": {
               "$ref": "#/definitions/DeleteGeofence"
             }
@@ -1360,7 +1357,7 @@
             "name": "location_id",
             "in": "query",
             "description": "location_id",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
@@ -1401,7 +1398,7 @@
             "name": "user_id",
             "in": "query",
             "description": "user_id to return nearby events",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
@@ -1442,21 +1439,21 @@
             "name": "user_id",
             "in": "query",
             "description": "user_id to return nearby events",
-            "required": true,
+            "required": false,
             "type": "string"
           },
           {
             "name": "start_date",
             "in": "query",
             "description": "start_date that need to be considered for filter",
-            "required": true,
+            "required": false,
             "type": "string"
           },
           {
             "name": "end_date",
             "in": "query",
             "description": "end_date that need to be considered for filter",
-            "required": true,
+            "required": false,
             "type": "string"
           }
         ],
