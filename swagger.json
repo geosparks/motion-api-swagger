@@ -1,0 +1,1716 @@
+{
+  "swagger": "2.0",
+  "host": "api.motion.dev",
+  "basePath": "/v1/api",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Everything about your users",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "geofences",
+      "description": "Everything about geofences",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "locations",
+      "description": "Everything about locations",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "trips",
+      "description": "Everything about trips",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "geocoding",
+      "description": "Everything about geocoding",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "search",
+      "description": "Everything about search",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "insights",
+      "description": "Everything about search",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "moving geofences",
+      "description": "Everything about moving geofences",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "events",
+      "description": "Everything about events",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/user/": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Add a new user to the project",
+        "description": "",
+        "operationId": "addUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object that needs to be added to the project",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update an existing user",
+        "description": "",
+        "operationId": "updateUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User object that needs to be added to the project",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUser"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "List Users",
+        "description": "",
+        "operationId": "List users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID of user to return",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "type": "string",
+            "description": "Start date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "type": "string",
+            "description": "End date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "type": "integer",
+            "description": "Page number be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Deletes a user",
+        "description": "",
+        "operationId": "deleteUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "User id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/geofence/": {
+      "post": {
+        "tags": [
+          "geofences"
+        ],
+        "summary": "Add a new geofence to the project",
+        "description": "",
+        "operationId": "addGeofence",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Body",
+            "description": "Geofence object that needs to be added to the project",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateGeofence"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "geofences"
+        ],
+        "summary": "Update an existing geofence",
+        "description": "",
+        "operationId": "updateGeofence",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Geofence object that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateGeofence"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "geofences"
+        ],
+        "summary": "List Geofences",
+        "description": "",
+        "operationId": "List Geofences",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "geofence_id",
+            "in": "query",
+            "description": "ID of geofence to return",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "color_code",
+            "in": "query",
+            "type": "string",
+            "description": "Color code that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "type": "string",
+            "description": "Tag that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "type": "integer",
+            "description": "Page number be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "geofences"
+        ],
+        "summary": "Deletes a geofence",
+        "description": "",
+        "operationId": "deleteGeofence",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Geofence object that needs to be deleted",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteGeofence"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/location/": {
+      "get": {
+        "tags": [
+          "locations"
+        ],
+        "summary": "List Locations",
+        "description": "",
+        "operationId": "List Locations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID of user to return user locations",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "type": "string",
+            "description": "Start date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "type": "string",
+            "description": "End date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "type": "integer",
+            "description": "Page number be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "timezone_offset",
+            "in": "query",
+            "type": "string",
+            "description": "By default it is UTC",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "points_encoded",
+            "in": "query",
+            "type": "boolean",
+            "description": "encoded polyline and time aware polyline",
+            "required": false,
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "locations"
+        ],
+        "summary": "Deletes a location",
+        "description": "",
+        "operationId": "deleteLocation",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Location object that needs to be deleted",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DeleteLocation"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/trips/": {
+      "post": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Add a new trip to the project",
+        "description": "",
+        "operationId": "addTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Trip object that needs to be added to the project",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreateTrip"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Update an existing trip",
+        "description": "Trip cannot be updated if started",
+        "operationId": "updateTrip",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Trip object that needs to be added to the project",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdateTrip"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Trip not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get Trip or list of Trips",
+        "description": "",
+        "operationId": "List trips",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "query",
+            "description": "ID of trip to return particular trip",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID of user that need to be considered for filter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "type": "string",
+            "description": "Start date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "type": "string",
+            "description": "End date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "type": "integer",
+            "description": "Page number be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Deletes a trip",
+        "description": "",
+        "operationId": "deleteTrip",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "query",
+            "description": "Trip id to delete",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Trip not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/trips/summary/": {
+      "get": {
+        "tags": [
+          "trips"
+        ],
+        "summary": "Get trip summary",
+        "description": "",
+        "operationId": "Trip Summary",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "trip_id",
+            "in": "query",
+            "description": "ID of trip to return summary",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "mapmatched",
+            "in": "query",
+            "type": "boolean",
+            "description": "",
+            "required": false,
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/geocoding/reverse/": {
+      "get": {
+        "tags": [
+          "geocoding"
+        ],
+        "summary": "Get reverse geocode",
+        "description": "",
+        "operationId": "Reverse Geocode",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "description": "long,lat",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/geocoding/forward/": {
+      "get": {
+        "tags": [
+          "geocoding"
+        ],
+        "summary": "Get forward geocode",
+        "description": "",
+        "operationId": "Forward Geocode",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "query",
+            "description": "address",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/geocoding/ip/": {
+      "get": {
+        "tags": [
+          "geocoding"
+        ],
+        "summary": "Get ip geocode",
+        "description": "",
+        "operationId": "ip Geocode",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "description": "ip address",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/search/users/": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get nearby users",
+        "description": "",
+        "operationId": "nearby users",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "user_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "radius",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "long,lat",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/search/geofences/": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get nearby geofences",
+        "description": "",
+        "operationId": "nearby geofences",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "user_id",
+            "type": "string"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "radius",
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "description": "long,lat",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/insights/work/": {
+      "get": {
+        "tags": [
+          "insights"
+        ],
+        "summary": "Get Work Location",
+        "description": "",
+        "operationId": "Get Work Location",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID of user to return insights",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/insights/home/": {
+      "get": {
+        "tags": [
+          "insights"
+        ],
+        "summary": "Get Home Location",
+        "description": "",
+        "operationId": "Get Home Location",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID of user to return Home Location",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/insights/poi/": {
+      "get": {
+        "tags": [
+          "insights"
+        ],
+        "summary": "Get User Point_of_interests",
+        "description": "",
+        "operationId": "Get User Point_of_interests",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID of user to return insights",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/insights/visits/": {
+      "get": {
+        "tags": [
+          "insights"
+        ],
+        "summary": "Get User Visits",
+        "description": "",
+        "operationId": "Get User Visits",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "ID of user to return visits",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "visit_date",
+            "in": "query",
+            "description": "Date to filter the visits",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/moving-geofence/": {
+      "post": {
+        "tags": [
+          "moving geofences"
+        ],
+        "summary": "Add a new moving geofence to the project",
+        "description": "",
+        "operationId": "addMovingGeofence",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Body",
+            "description": "Geofence object that needs to be added to the project",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreateMovingGeofence"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "moving geofences"
+        ],
+        "summary": "Update an existing moving geofence",
+        "description": "",
+        "operationId": "updateMovingGeofence",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Geofence object that needs to be updated",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/UpdateMovingGeofence"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "moving geofences"
+        ],
+        "summary": "Get Moving Geofences",
+        "description": "",
+        "operationId": "Get Moving Geofences",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "geofence_id",
+            "in": "query",
+            "description": "ID of geofence to return",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "type": "string",
+            "description": "start_date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "type": "string",
+            "description": "end_date that need to be considered for filter",
+            "required": false,
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "type": "boolean",
+            "description": "",
+            "required": false,
+            "collectionFormat": "multi"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "moving geofences"
+        ],
+        "summary": "Deletes a moving geofence",
+        "description": "",
+        "operationId": "deleteMovingGeofence",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Geofence object that needs to be deleted",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DeleteGeofence"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/event/": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Get Geofence Events",
+        "description": "",
+        "operationId": "Get Geofence Events",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "location_id",
+            "in": "query",
+            "description": "location_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/event/nearby/": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Get Nearby Events",
+        "description": "",
+        "operationId": "Get Nearby Events",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "user_id to return nearby events",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/event/trips/": {
+      "get": {
+        "tags": [
+          "events"
+        ],
+        "summary": "Get Trips Events",
+        "description": "",
+        "operationId": "Get Trips Events",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "query",
+            "description": "user_id to return nearby events",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "start_date that need to be considered for filter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "end_date that need to be considered for filter",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "Api-Key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "app_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "device_token": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "UpdateUser": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "app_type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "device_token": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "updateUser"
+      }
+    },
+    "CreateGeofence": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "geometry_type": {
+          "type": "string"
+        },
+        "geometry_radius": {
+          "type": "integer"
+        },
+        "is_enabled": {
+          "type": "boolean"
+        }
+      },
+      "xml": {
+        "name": "createGeofence"
+      }
+    },
+    "UpdateGeofence": {
+      "type": "object",
+      "properties": {
+        "geofence_id": {
+          "type": "string"
+        },
+        "is_enabled": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "color_code": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "updateGeofence"
+      }
+    },
+    "DeleteGeofence": {
+      "type": "object",
+      "properties": {
+        "geofence_id": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "deleteGeofence"
+      }
+    },
+    "DeleteLocation": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "start_time": {
+          "type": "string"
+        },
+        "end_time": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "deleteLocation"
+      }
+    },
+    "CreateTrip": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "user_id": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "createTrip"
+      }
+    },
+    "UpdateTrip": {
+      "type": "object",
+      "properties": {
+        "trip_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "origins": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "createTrip"
+      }
+    },
+    "CreateMovingGeofence": {
+      "type": "object",
+      "properties": {
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "geometry_type": {
+          "type": "string"
+        },
+        "geometry_radius": {
+          "type": "integer"
+        },
+        "is_enabled": {
+          "type": "boolean"
+        },
+        "only_once": {
+          "type": "boolean"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "xml": {
+        "name": "createMovingGeofence"
+      }
+    },
+    "UpdateMovingGeofence": {
+      "type": "object",
+      "properties": {
+        "geofence_id": {
+          "type": "string"
+        },
+        "is_enabled": {
+          "type": "boolean"
+        }
+      },
+      "xml": {
+        "name": "createMovingGeofence"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
