@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "playground-api-test.geospark.xyz",
+  "host": "api-test.motion.dev",
   "basePath": "/v1/api",
   "tags": [
     {
